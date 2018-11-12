@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<!--配置缓存-->
+
+
+{% block page_css %}
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #main {
+            padding: 20px;
+        }
+        /*这里之所以显示为灰色 代表工具没有检测到该css样式 */
+        .shop_detail_img {
+            float: left;
+            width: 40%;
+        }
+
+        .shop_detail_content {
+            float: left;
+            width: 50%;
+        }
+
+        .shop_detail_content > h3 {
+            font-weight: 800;
+            color: black;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .shop_detail_content .detail_title {
+            color: red;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .detail_time {
+            background: #2da77a;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .detail_time > span {
+            color: yellow;
+            padding-right: 5px;
+            font-size: 14px;
+        }
+
+        .detail_count {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #c9c9c9;
+            border-top: 1px solid #c9c9c9;
+        }
+
+        .detail_count .count_first {
+            padding-left: 100px;
+            color: gainsboro;
+        }
+
+        .detail_count .count_last {
+            padding-right: 100px;
+            color: red;
+            padding-left: 5px;
+        }
+
+        .detail_price .text {
+            color: gainsboro;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .detail_price .price {
+            color: black;
+            padding: 10px;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .shop_detail_img {
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .detail_small_img li {
+            float: left;
+            width: 18%;
+            margin: 4px;
+        }
+
+        .detail_small_img li > img:hover {
+            border: 1px solid red;
+        }
+
+        .detail_common {
+            padding: 10px;
+        }
+
+        .detail_promote_price {
+            padding: 10px;
+        }
+
+        .detail_promote_price span:last-child {
+            font-size: 18px;
+            padding-left: 5px;
+            color: red;
+        }
+
+        .detail_middle_img {
+            padding: 0 10px;
+        }
+
+        .detail_small_img {
+            margin-top: 10px;
+        }
+
+        .detail_middle_img > img {
+            height: 300px;
+            width: 100%;
+        }
+
+        .detail_small_img img {
+            width: 100%;
+        }
+
+        {#    盒子模型 #}
+        .shop_param {
+            margin-left: 100px;
+        {#最小宽度 能够防止在拉窄边框时 数据会换行变形#} min-width: 1440px;
+        }
+
+        .shop_param > p {
+        {#将其设置为行内快 可以设置其宽高属性#} display: inline-block;
+            min-width: 500px;
+            font-size: 16px;
+            padding: 5px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block page_jq %}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        $(function () {
+            $('.shop_detail_img li').mouseover(function () {
+                // 获得当前li标签的索引
+                let index = $(this).index();
+                // 隐藏div标签下所有的img
+                $('.shop_detail_img>div>img').hide();
+                // 找到索引对应的标签(当前标签)进行显示
+                {#jQuery对象通过索引获取的对象都是原生的js对象#}
+                $('.shop_detail_img>div>img')[index].setAttribute('style', 'display:block')
+            });
+
+
+            //获取商品的id
+            //获取商品的数量
+            // ajax方法实现按钮点击事件提交数据
+            $('#add_cars').click(function () {
+                // 触发ajax请求
+                // 获取购买的数量
+                let $num = $('#num').val();
+                //获取商品数量
+                // 从隐藏的input标签中获取到
+                let $shop_id = $('#shop_id').val();
+                // 请求数据的路径
+                let ADD_URL = 'http://127.0.0.1:8000/cars/add/';
+                //提交到后台的参数
+                data = {
+                    num: $num,
+                    shop_id: $shop_id,
+                };
+                $.get(ADD_URL, data, function (result) {
+                    alert(result)
+                });
+            })
+
+        })
+    </script>
+
+
+{% endblock %}
+
+{% block title %}
+    商品具体信息
+{% endblock %}
+
+{% block page_head %}
+    <!--添加缓存-->
+    {#    {% cache 5 * 60 'index_head' %}#}
+
+    <!--顶部 用户账户管理部分-->
+    {% include 'include/common/page_top.html' %}
+
+    <!--搜索框 gif+搜索条-->
+    {% include 'include/common/page_search.html' %}
+
+{% endblock %}
+{% block page_content %}
+    <!--本将另外页面的css|js转移到本页 -->
+    {% include 'include/shop/page_shop_detail.html' %}
+{% endblock %}
+
+{% block page_footer %}
+
+{% endblock %}

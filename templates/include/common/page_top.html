@@ -1,0 +1,24 @@
+{% load  staticfiles %}
+<nav class="top">
+    <div class="top_middle">
+        <a href="">
+            <span style="color:#C40000;margin:0px" class="glyphicon glyphicon-home red_color"></span>
+            天猫首页
+        </a>
+        <span>喵，欢迎来天猫</span>
+        {% if  request.user.is_authenticated %}
+            <a href="">{{ request.user.username }}</a>
+            <a href="">退出</a>
+        {% else %}
+            <a href="{% url 'login' %}">请登录</a>
+            <a href="">免费注册</a>
+        {% endif %}
+        <span class="pull-right">
+			<a href="">我的订单</a>
+			<a href="{% url 'show' %}">
+                <!--展示用户购物车信息接口 从session中取出储存的cars.count值 用到过滤器-->
+			<span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-shopping-cart red_color"></span>
+			购物车<strong>{{ request.session.count }}</strong>件</a>
+		</span>
+    </div>
+</nav>

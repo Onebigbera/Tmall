@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--如何实现将选择的商品提交到-->
+<!--虽然加载问价会报错|但还是会识别出来-->
+{% load custom_filter %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shop_cars</title>
+</head>
+<body>
+<!--向后台提交数据的两种放方式: form表单/提取input输入框中的内容 |  ajax向指定的url中提交数据-->
+<form action="{% url 'confirm' %}" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>图片</th>
+            <th>标题</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>总价</th>
+            <th>操作</th>
+        </tr>
+
+        {% for car in cars %}
+            <tr>
+                <!--设置选择框 向后台传递数据 哪些商品被选定 设置value？？-->
+                <td><input type="checkbox" name="ck" value="{{ forloop.counter0 }}"></td>
+                <td><img src="http://127.0.0.1:8000/static/images/small/{{ car.img.shop_img_id }}.jpg"></td>
+                <!--商品和购物车一对多关系 商品名称-->
+                <td><a href="#">{{ car.shop.name }}</a></td>
+                <!-- 促销价格-->
+                <td><a href="#">{{ car.shop.promote_price }}</a></td>
+                <!--自定义过滤器计算单价数据价格-->
+                <td><input type="number" value="{{ car.number }}" name="number"></td>
+                <td>{{ car.number|multiply:car.shop.promote_price }}</td>
+                <td><a href="#">移除</a></td>
+                <!--设置隐藏字段用来存储对应购物车对象的id 方便后台获取-->
+                <!--为什么直接拿car_id拿不到呢？？-->
+                <input type="hidden" name="car_id" value="{{ car.car_id }}">
+            </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <!--方便后台获取Input框里面的值 结算-->
+        <input type="submit" value="结算">
+    </div>
+</form>
+</body>
+</html>

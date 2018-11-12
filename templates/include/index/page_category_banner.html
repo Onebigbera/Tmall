@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<div id="banner" class="banner">
+    <ul>
+        {% for banner in banners %}
+            <!--拼接静态文件的路径-->
+            <li><a href="#">
+                <img src="static/{{ banner.image }}"></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

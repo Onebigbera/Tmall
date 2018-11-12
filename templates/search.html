@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    搜索
+{% endblock %}
+
+{% block page_head %}
+    {% include 'include/common/page_top.html' %}
+    {% include 'include/common/page_search.html' %}
+
+{% endblock %}
+
+<!--搜索内容根据用户搜索发生改变-->
+{% block page_content %}
+    {% include 'test/page_search_result.html' %}
+{% endblock %}
+
+<!--公共部分 页面末尾部分-->
+{% block page_footer %}
+    {% include 'include/common/page_footer.html' %}
+{% endblock %}

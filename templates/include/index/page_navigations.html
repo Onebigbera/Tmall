@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!-- 分类菜单与轮播 -->
+<img src="{% static 'images/site/catear.png' %}" id="catear" class="catear"/>
+
+<div class="category_carousel">
+    <div class="headbar show1">
+        <div class="head ">
+            <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+            <span style="margin-left:10px">商品分类</span>
+        </div>
+        <div class="right_menu">
+            <span><a href=""><img src="{% static 'images/site/chaoshi.png' %}"/></a></span>
+            <span><a href=""><img src="{% static 'images/site/guoji.png' %}"/></a></span>
+            {% for navigation in  navigations %}
+                <span><a href="#">{{ navigation.nav_name }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
+</div>

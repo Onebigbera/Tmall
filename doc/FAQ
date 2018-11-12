@@ -1,0 +1,55 @@
+QAQ:
+
+  显示商品具体信息
+
+    怎么实现在4张小图片中 点击任意图片将其放大并显示在特定的位置?
+       jQ操作实现  根据得到鼠标操作的img标签得到对应的照片
+         默认设置为显示第一张照片，其他照片隐藏
+         当执行悬停操作时 执行jq中代码
+         显示操作图片 其他图片隐藏
+         具体代码如下:
+            $(function () {
+            $('.shop_detail_img li').mouseover(function () {
+                // 获得当前li标签的索引
+                let index = $(this).index();
+                // 隐藏div标签下所有的img
+                $('.shop_detail_img>div>img').hide();
+                // 找到索引对应的标签(当前标签)进行显示
+                {#jQuery对象通过索引获取的对象都是原生的js对象#}
+                $('.shop_detail_img>div>img')[index].setAttribute('style', 'display:block')
+
+    css中如何布局使每行只显示两条信息?
+    通过css样式进行控制
+
+      html样式
+    <div class="shop_param">
+        {% for property in properties %}
+            <p><span>{{ property.name }}:</span> <span>{{ property.pro_value.value }}</span></p>
+        {% endfor %}
+
+    css 样式
+    {#    盒子模型 #}
+        .shop_param {
+            margin-left: 100px;
+            {#最小宽度 能够防止在拉窄边框时 数据会换行变形#}
+            min-width: 1440px;
+        }
+
+        .shop_param > p {
+            {#将其设置为行内快 可以设置其宽高属性#}
+            display: inline-block;
+            min-width: 500px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+服务器向后台提交数据的两种方式 当前两种方法
+    form表单
+
+    ajax方法
+      ajax传递参数有两种方式
+           (1) data 对象方式传参
+           (2) Formdata 对象？？？
+Ajax 事件流程总结
+
+

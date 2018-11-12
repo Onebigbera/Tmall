@@ -1,0 +1,19 @@
+css
+    选择器
+
+    盒子模型
+    1.content
+      宽、高(行内元素没有宽高)
+    2.padding
+        padding:1 2
+    3.border
+
+    4.margin
+
+    浮动定位
+
+    float
+
+    position
+
+    常用属性

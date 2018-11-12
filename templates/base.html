@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--公共部分重复的的代码写在此处 基础架构-->
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <!--公共的js| css外部样式也写在母版中 jq-->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <!--公共样式css文件 | 基本的css样式也写在此处-->
+    <link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css">
+<!--公共的样式|bootstrap样式 css static 静态加载css文件-->
+    <link href="{% static 'css/bootstrap/3.3.6/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/fore/style.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %} {% endblock %}</title>
+    <!--继承页面预备的css空间-->
+    {% block page_css %}
+    {% endblock %}
+    <!--继承页面预留的jq空间-->
+    {% block page_jq %}
+    {% endblock %}
+</head>
+<body>
+<div id="head">
+    {% block page_head %}
+
+    {% endblock %}
+</div>
+
+<div id="content">
+    {% block page_content %}
+
+    {% endblock %}
+</div>
+
+<div id="footer">
+    {% block page_footer %}
+
+    {% endblock %}
+</div>
+
+</body>
+</html>

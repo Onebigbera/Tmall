@@ -1,0 +1,53 @@
+<!--extend本身就不是继承的意思 而是扩展；延展；延伸的意思 对母体进行扩展 本身包含了继承-->
+<!--继承母版-->
+{% extends 'base.html' %}
+<!--加载静态文件-->
+{% load staticfiles %}
+<!--配置缓存-->
+{% load cache %}
+
+{% block page_css %}
+{% endblock %}
+
+{% block page_jq %}
+    <!--页面中具体需要的jq-->
+    <script type="text/javascript" src="/static/js/unslider.min.js"></script>
+    <script type="text/javascript" src="/static/js/home.js"></script>
+{% endblock %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block page_head %}
+    <!--添加缓存-->
+    {#    {% cache 5 * 60 'index_head' %}#}
+
+    <!--顶部 用户账户管理部分-->
+    {% include 'include/common/page_top.html' %}
+
+    <!--搜索框 gif+搜索栏-->
+    {% include 'include/common/page_search.html' %}
+
+    <!--横向导航条-->
+    {% include 'include/index/page_navigations.html' %}
+
+    <div class="category_carousel">
+    <!--分类信息 二级|三级 分类信息-->
+    {% include 'include/index/page_category.html' %}
+        <!--<div style="position: relative"></div>-->
+    <!--轮播图-->
+    {% include 'include/index/page_category_banner.html' %}
+    </div>
+
+    {#    {% endcache %}#}
+{% endblock %}
+
+{% block page_content %}
+    <!--分类信息展示-->
+    {% include 'include/index/page_category_shops.html' %}
+{% endblock %}
+
+{% block page_footer %}
+
+{% endblock %}

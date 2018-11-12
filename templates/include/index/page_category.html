@@ -1,0 +1,22 @@
+<div class="category_menu">
+    {% for category in categories %}
+        <!--一级菜单的数据-->
+        <div class="category_menu_item">
+            <span class="glyphicon glyphicon-gift"></span>
+            <a href="#">{{ category.name }}</a>
+        </div>
+        <!--一级菜单对应的二级菜单的数据-->
+        <ul class="category_sub">
+            {% for sub in category.subs %}
+                <li class="clear">
+                    <a style="float: left" href="#">{{ sub.name }}</a>
+                    {% for sub2 in sub.subs2 %}
+                        <div style="float: left">
+                            <a class="category_sub_item">{{ sub2.name }}</a>
+                        </div>
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>

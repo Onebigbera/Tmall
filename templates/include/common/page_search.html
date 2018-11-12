@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<div class="search_out_div">
+    <a href="#">
+        <img src="{% static 'images/site/logo.gif' %}" class="logo">
+    </a>
+    <!--将form表单也安排在首页页面的page_head中-->
+    <form action="{% url 'search' %}" method="post">
+        <div class="search_div">
+            {% csrf_token %}
+            <input name="keyword" type="text" value="" placeholder="时尚男鞋  太阳镜 ">
+            <button type="submit" class="search_button">搜索</button>
+            <div class="search_below">
+                {#                {% for hot in hots %}#}
+                {#                    <a href="">{{ hot.name }}</a>#}
+                {#                    {% if not forloop.last %}#}
+                {#                    {% endif %}#}
+                {#                {% endfor %}#}
+
+            </div>
+        </div>
+    </form>
+</div>

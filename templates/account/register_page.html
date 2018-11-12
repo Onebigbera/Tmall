@@ -1,0 +1,47 @@
+<form method="post" action="{% url 'register' %}" class="register_form">
+    <div class="register_div">
+        <div class="register_error_message_div">
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                <span class="errorMessage"></span>
+            </div>
+        </div>
+        <table class="register_table" align="center">
+            <tr>
+                <td class="register_tip register_table_left_td">设置会员名</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="register_table_left_td">登陆名</td>
+                <td class="register_table_right_td">
+                    <input style="font-size: 12px;padding-left: 5px" id="name" name="name" placeholder="会员名一旦设置成功，无法修改">
+                </td>
+            </tr>
+            <tr>
+                <td class="register_tip register_table_left_td">设置登陆密码</td>
+                <td class="register_table_right_td">登陆时验证，保护账号信息</td>
+            </tr>
+            <tr>
+                <td class="register_table_left_td">登陆密码</td>
+                <td class="register_table_right_td">
+                    <input id="password" style="font-size: 12px;padding-left: 5px" name="password" type="password"
+                           placeholder="设置你的登陆密码"></td>
+            </tr>
+
+            <tr>
+                <td class="register_table_left_td">密码确认</td>
+                <td class="register_table_right_td">
+                    <input id="repeatpassword" style="font-size: 12px;padding-left: 5px" type="password"
+                           placeholder="请再次输入你的密码">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="register_button">
+                    <a href="">
+                        <button>提 交</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

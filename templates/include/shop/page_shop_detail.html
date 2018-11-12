@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="main">
+    <img>
+    <div id="shop_detail" class="clear">
+        <div class="shop_detail_img">
+            <div class="detail_middle_img">
+                <!--判断照片的类型 是否为在此处显示的详细照片-->
+                {% for img in shop.imgs %}
+                    {% if img.type == 'type_single' %}
+                        <!--判断是否为第一张照片-->
+                        {% if forloop.first %}
+                            <!--由img.shop_img_id得到照片的序号-->
+                            <img style="display: block"
+                                 src="http://127.0.0.1:8000/static/images/middle/{{ img.shop_img_id }}.jpg">
+                        {% else %}
+                            <!--如果不是第一张照片 就隐藏-->
+                            <img style="display: none"
+                                 src="http://127.0.0.1:8000/static/images/middle/{{ img.shop_img_id }}.jpg">
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <ul class="detail_small_img">
+                {% for img in shop.imgs %}
+                    <!--判断是否为显示的详细图片(小图片)-->
+                    {% if img.type == 'type_single' %}
+                        <li><img src="http://127.0.0.1:8000/static/images/small/{{ img.shop_img_id }}.jpg"></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="shop_detail_content">
+            <h3>{{ shop.name }}</h3>
+            <!--展示在右边的信息-->
+            <p class="detail_title">{{ shop.sub_title }}</p>
+            <p class="detail_time">聚划算 此商品即将参加聚划算，<span>1天19小时</span>后开始</p>
+            <div class="detail_common"><img src=""><span>全天猫实物商品通用</span></div>
+            <div class="detail_price">
+                <span class="text">价格  ¥</span>
+                <span class="price">{{ shop.original_price }}
+                </span>
+            </div>
+            <div class="detail_promote_price">
+                <span class="">促销价  ¥</span>
+                <span class="">{{ shop.promote_price }}</span>
+            </div>
+            <div class="detail_count">
+                <span class="count_first">销量 </span>
+                <span class="count_last">312</span>
+                |
+                <span class="count_first">累计评价  </span>
+                <!--将views函数中得到的review条数与shop进行绑定 展示评论条数-->
+                <span class="count_last">{{ count }}</span>
+            </div>
+            <div>数量<input id="num" type="number" min="1" max="10" value="1">件 库存{{ shop.stock }}件</div>
+            <!--将商品的id保留在html中 方便之后取得-->
+            <!--渲染之后无法取得其shop_id 所以必须安排在返回给后端的数据中 但是将其type设置为hidden 隐藏起来-->
+            <input id="shop_id" type="hidden" value="{{ shop.shop_id }}">
+            <div>
+                <a href="#">
+                    <button>立即购买</button>
+                </a>
+
+                <button id="add_cars">加入购物车</button>
+            </div>
+        </div>
+    </div>
+    <div id="detail_review">
+        <div class="shop_param">
+            <h3>产品参数介绍</h3>
+            <!--遍历产品的属性 比如:厂商、产地等-->
+            {% for property in properties %}
+                <!--展示产品的属性选项和具体的属性值 property.pro_value.value 前部分仅仅得到对象 .value得到值-->
+                <!-- what how to manage it -->
+                <p><span>{{ property.name }}:</span> <span>{{ property.pro_value.value }}</span></p>
+            {% endfor %}
+            <!--将shop对象照片展示-->
+            <div class="shop_img_detail">
+                {% for img in shop.imgs %}
+                    {% if img.type == 'type_detail' %}
+                        <img src="http://127.0.0.1:8000/static/images/detail/{{ img.shop_img_id }}.jpg">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="shop_review">
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

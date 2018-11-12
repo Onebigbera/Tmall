@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<div class="category_shops">
+    {% for category in  categories %}
+        <div     class="category_shop ">
+            <div class="left-mark"></div>
+            <span>{{ category.name }}</span>
+        </div>
+        <div class="clear">
+            {% for shop in category.shops %}
+                {% if forloop.counter < 6 %}
+                    <div class="shop_item">
+                    <!---->
+                        <a href="{% url 'detail' shop.shop_id %}">
+                            <!--通过shop.img得到img对象-->
+                            <!--通过img对象获取照片的序号 拼接成可以访问的路径-->
+                            <!--http://127.0.0.1:8000/static/images/middle/22.jpg-->
+                            <img src="static/images/middle/{{ shop.img.shop_img_id }}.jpg">
+                        </a>
+                        <a class="shop_item_desc_link" href="">
+                            <span class="shop_item_desc">[热销] {{ shop.name }} </span>
+                        </a>
+                        <span class="shop_price">{{ shop.promote_price }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

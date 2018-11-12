@@ -1,0 +1,33 @@
+form表单中获取多个值
+django后端如何获取多个
+    <form>
+    <input name='name'>
+    </form>
+后端
+    name = request.POST.get('name')
+
+
+获取多个
+    names = request.POST.getlist('name')
+    passwords = request.POST.get('password')
+
+    {% for car in cars %}
+        <tr>
+            <td><img src="http://127.0.0.1:8000/static/images/small/{{ car.img.shop_img_id }}.jpg"></td>
+            <td><a href="#">{{ car.shop.name }}</a></td>
+            <td href="#">{{ car.shop.promote_price }}</td>
+            <!--自定义过滤器计算单价数据价格-->
+            <td><input type="number" value="{{ car.number }}"></td>
+            <td>{% car.number|multiply:car.shop.promote_price %}</td>
+            <td><a href="#">移除</a></td>
+        </tr>
+    {% endfor %}
+    循环后为多组对应的input标签的值
+    eg:
+    第一组<input name='name'>
+    <input name='password'>
+    .
+    ...第n组
+    .
+    <input name='name'>
+    <input name='password'>

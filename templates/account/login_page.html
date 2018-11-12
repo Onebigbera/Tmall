@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<div id="login_wrap" style="position: relative">
+
+    <div class="simple_logo">
+        <a href=""><img src="{% static 'images/site/simple_logo.png' %}"></a>
+    </div>
+
+    <img class="login_bg_img" src="{% static 'images/site/login_bg.jpg' %}">
+
+    <form class="login_form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="login_small_div">
+            <div class="login_error_message_div">
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    <span class="errorMessage"></span>
+                </div>
+            </div>
+
+            <div class="login_account_text">账户登录</div>
+            <div class="login_input ">
+				<span class="login_input_icon ">
+					<span class="glyphicon glyphicon-user"></span>
+				</span>
+                <input id="name" name="name" placeholder="手机/会员名/邮箱" type="text">
+            </div>
+
+            <div class="login_input ">
+				<span class="login_input_icon ">
+					<span class=" glyphicon glyphicon-lock"></span>
+				</span>
+                <input id="password" name="password" type="password" placeholder="密码" type="text">
+            </div>
+            <div>
+                <a class="not_implement_link" href="">忘记登录密码</a>
+                <a href="" class="pull-right">免费注册</a>
+            </div>
+            <div style="margin-top:20px">
+                <button class="btn btn-block red_button" type="submit">登录</button>
+            </div>
+        </div>
+    </form>
+
+</div>

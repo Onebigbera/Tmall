@@ -1,0 +1,19 @@
+<ul>
+    {% for shop in  shops %}
+        <li>
+            <a href="#">
+                <img src="http://127.0.0.1:8000/static/images/middle/{{ shop.image.shop_img_id }}.jpg">
+                <p>{{ shop.sub_title }}</p>
+                <p>{{ shop.promote_price }}</p>
+                <div><span>月成交量 70 </span> <span>评论 1</span></div>
+            </a>
+        </li>
+        <!--当搜索数据为空时 显示的内容-->
+    {% empty %}
+        <p>抱歉！商品没有找到额...</p>
+    {% endfor %}
+</ul>
+
+
+
+

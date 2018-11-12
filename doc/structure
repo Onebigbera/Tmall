@@ -1,0 +1,106 @@
+HOW TO CREATE A NEW PROJECT
+    过程
+      搭建项目架构  框架已经搭建好  只需要配置
+
+      整体功能:
+        后台
+          views models
+        前端
+         templates
+        后台管理
+          admin  | xadmin
+        移动端(前后端分离)
+            IOS | ANDROID
+
+    项目具体功能
+
+      首页:
+        导航分类
+        具体分类
+        鼠标移动时显示子分类
+        按照分类显示商品信息，显示n条数据
+        跳转到具体网页的链接
+
+      商品详情
+        具体商品信息展示
+          商品的价格、标题、销量、评论、销量等具体信息
+          立即购买、加入购物车功能
+
+      搜索功能 | 搜索结果展示
+
+      用户系统
+
+      购物车功能
+
+      支付系统
+
+    上线部署
+      uwsgi + nginx
+
+
+    xadmin
+    外部扩展app
+
+    虚拟环境依赖库的导入导出:
+
+       导出当前开发环境:  pip freeze > dev.txt
+
+       批量导入依赖环境:  pip install -r requirements/dev.txt
+
+   xadmin 安装配置过程
+    (1)老师给的xadmin是django1.11.12(2.0版本以下的)，所以需要将django版本降级
+    (2)安装xadmin依赖的环境
+    pip install -r requirements/xadmin.txt
+    (3)将xdmin放在venv/lib/site-packages目录下
+    (4)注册xadmin
+        # 核心
+    'xadmin',
+    # 未知
+    'crispy_forms',
+    # 主题相关的app
+    'reversion',
+    (5)修改系统内置的admin为xadmin
+    (6)迁移xadmin模块里的表
+        python manage.py migrate xadmin
+    (7)创建管理员用户
+    (8)启动程序
+
+  熟悉表与表之间的关联关系
+
+  按照模块功能将表进行分类
+
+  使用系统内置的用户认证表(user)
+
+  反向迁移过程需要对表进行更改，比如:
+  managed = False  改为 True
+  整理模型中的外键关联关系 是否完整匹配
+  功能完善
+
+  模板结构的构建和优化
+
+  详情界面的设计
+
+  商品陈列展示界面
+
+  搜寻商品详细介绍界面
+
+  商品详情
+
+  购物车功能
+        大型公司有运用不用用户登陆实现将商品添加到购物车功能--由cookie和session底层实现
+        弊端:只支持服务器绑定 不支持同步
+            无法同步到移动端
+
+        当用户表为非Django内置用户表时 解决方案有两个:
+        (1)使用与新的项目
+            重写auth_user表后及进行迁移 __见笔记
+        (2)建立起自己的用户表和系统内置表的一对一关联关系
+
+上线部署
+
+
+
+
+
+
+
